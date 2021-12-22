@@ -32,3 +32,19 @@ npx sequelize-cli model:generate --name User --attributes firstName:string,lastN
 ```
 npx sequelize-cli db:migrate
 ```
+
+# Create Seeder
+```
+npx sequelize-cli seed:generate --name user
+```
+
+# Execute the Seeder
+```
+npx sequelize-cli db:seed:all
+```
+
+# Check if it´s data in the Users table
+```
+psql sequelize_project_development
+SELECT * FROM "Users";
+```
