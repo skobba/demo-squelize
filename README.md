@@ -48,3 +48,44 @@ npx sequelize-cli db:seed:all
 psql sequelize_project_development
 SELECT * FROM "Users";
 ```
+
+# Adds two columns to Users table
+## Create a new Migration Skeleton
+```
+npx sequelize-cli migration:generate --name migration-skeleton
+```
+
+## Edit the new Migration Skeleton file
+```js
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.addColumn('Users', 'petName', {
+          type: Sequelize.DataTypes.STRING
+        }, { transaction: t }),
+        queryInterface.addColumn('Users', 'favoriteColor', {
+          type: Sequelize.DataTypes.STRING,
+        }, { transaction: t })
+      ]);
+    });
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.removeColumn('Users', 'petName', { transaction: t }),
+        queryInterface.removeColumn('Users', 'favoriteColor', { transaction: t })
+      ]);
+    });
+  }
+```
+
+## Run Migration (again)
+```
+npx sequelize-cli db:migrate
+```
+
+## Check Result
+Describe Users table:
+```
+\d "Users"
+```
