@@ -11,3 +11,14 @@ Next we will initialize a Sequelize project, then open the directory in our code
 ```
 npx sequelize-cli init
 ```
+
+# Create root user
+```
+CREATE USER root;
+ALTER USER root WITH SUPERUSER;
+```
+
+# Create Database
+```
+npx sequelize-cli db:create
+```
