@@ -22,3 +22,13 @@ ALTER USER root WITH SUPERUSER;
 ```
 npx sequelize-cli db:create
 ```
+
+# Create a User model
+```
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string,password:string
+```
+
+# Execute Migration
+```
+npx sequelize-cli db:migrate
+```
